@@ -1,0 +1,10 @@
+**/.terraform/*
+*.terraform.*
+
+*.tfstate
+*.tfstate.*
+
+carsh.log
+carsh.*.log
+
+.exe

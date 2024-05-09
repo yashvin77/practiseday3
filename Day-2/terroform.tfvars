@@ -1,0 +1,6 @@
+ami_id1            = "ami-07caf09b362be10b8"
+instance_type1     = "t2.micro"
+key_name_instance1 = "pull"
+ami_id2            = "ami-04ff98ccbfa41c9ad"
+instance_type2     = "t2.micro"
+key_name_instance2 = "private"
