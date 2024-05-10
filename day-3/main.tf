@@ -102,10 +102,11 @@ egress {
     instance_type = var.instance_type
     key_name = var.key_name
     subnet_id = aws_subnet.custom_VPC.id
-    security_groups = ["aws_security_group.dev.id"]
+    vpc_security_group_ids = [aws_security_group.dev.id]
+    
     tags = {
       
-      Name = "myec6"
+      Name = "mye7"
     }
 
   }
