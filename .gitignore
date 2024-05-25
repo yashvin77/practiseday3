@@ -8,3 +8,4 @@ carsh.log
 carsh.*.log
 
 .exe
+appinstall.sh
