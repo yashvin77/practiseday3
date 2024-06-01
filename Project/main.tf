@@ -125,12 +125,14 @@ resource "aws_iam_instance_profile" "policy" {
 
 # Creating provisner for remote execution of file
 
-#  provisioner "remote-exec" {
-#     inline = [
-# "touch file200",
-# "echo hello from aws >> file200",
-# ]
-#  }
+resource "aws_instance" "ec2" {
+ provisioner "remote-exec" {
+    inline = [
+"touch file200",
+"echo hello from aws >> file200",
+]
+ }
+}
 
 # Creating Instance 
 
@@ -153,27 +155,28 @@ resource "aws_instance" "ec2" {
 
   }
 
-# resource "aws_instance" "us_ec2" {
-#     ami = var.Us_ami
-#     instance_type = var.instance_type
-#     key_name = var.key_name
-#     subnet_id = aws_subnet.custom_VPC.id
-#     vpc_security_group_ids = [aws_security_group.devops-project-yashu.id]
-#     iam_instance_profile = aws_iam_instance_profile.policy.id
-#     user_data = file("appsinstall.sh")
-#     for_each = toset(var.yashu)
-#     associate_public_ip_address = true
-#     provider = aws.america
+resource "aws_instance" "us_ec2" {
+    ami = var.Us_ami
+    instance_type = var.instance_type
+    key_name = var.key_name
+    subnet_id = aws_subnet.custom_VPC.id
+    vpc_security_group_ids = [aws_security_group.devops-project-yashu.id]
+    iam_instance_profile = aws_iam_instance_profile.policy.id
+    user_data = file("appsinstall.sh")
+    for_each = toset(var.yashu)
+    associate_public_ip_address = true
+    provider = aws.america
 
-#     tags = {
+    tags = {
       
-#       Name = each.value
-#     }
+      Name = each.value
+    }
 
-#   }
+  }
 
 
-
-# lifecycle {
-#     create_before_destroy = true   
-#}
+resource "aws_instance" "ec2" {
+lifecycle {
+    create_before_destroy = true   
+}
+}
